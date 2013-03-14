@@ -11,8 +11,12 @@
         }
     ],
 
-    "repositories": {
+    "repositories": [{
         "type":"vcs",
         "url":"http://github.com/junwatu/simple-shopping-chart"
+    }],
+    "require":{
+        "symfony/http-foundation":"2.2.x",
+        "monolog/monolog":"1.4.x"
     }
 }
