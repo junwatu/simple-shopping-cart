@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  *  Simple Shopping Chart
  *
@@ -19,6 +20,12 @@ $log->pushHandler(new StreamHandler('../log/watushop.log'));
 
 $request = Request::createFromGlobals();
 
+if(!isset($_SESSION[''])){
+    $_SESSION['cart'] = array();
+}
+
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,5 +34,6 @@ $request = Request::createFromGlobals();
 </head>
 <body>
 <h1>Simple Shopping Cart</h1>
+<p>Your shopping cart contains <?php echo count($_SESSION['cart'])?> items</p>
 </body>
 </html>
