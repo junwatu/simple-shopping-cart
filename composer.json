@@ -1,0 +1,18 @@
+{
+    "name": "junwatu/simple-shopping-chart",
+    "description": "Shopping chart from scratch",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Equan Pr.",
+            "homepage":"http://www.junwatu.com",
+            "email": "eq@junwatu.com",
+            "role":"developer"
+        }
+    ],
+
+    "repositories": {
+        "type":"vcs",
+        "url":"http://github.com/junwatu/simple-shopping-chart"
+    }
+}
