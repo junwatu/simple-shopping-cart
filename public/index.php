@@ -1,5 +1,4 @@
 <?php
-session_start();
 /**
  *  Simple Shopping Chart
  *
@@ -9,11 +8,43 @@ session_start();
  *  2013
  */
 
+require '../vendor/autoload.php';
+include 'data.php';
+
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
+use Symfony\Component\ClassLoader\UniversalClassLoader;
 use Symfony\Component\HttpFoundation\Request;
+
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
-require '../vendor/autoload.php';
+$loader = new UniversalClassLoader();
+$loader->useIncludePath(true);
+
+/**
+ * Register custom library
+ */
+$loader->registerNamespaces(array(
+    'Watushop' => __DIR__ . '/../lib'
+));
+
+$loader->register();
+
+use Watushop\Version;
+
+
+/**
+ * Start Session
+ */
+$cart_oders = new AttributeBag('cart');
+$cart_oders->setName('Shopping Orders');
+
+
+$session = new Session(null,$cart_oders);
+$session->start();
+
+$info = new Version();
 
 $log = new Logger('Watushop');
 $log->pushHandler(new StreamHandler('../log/watushop.log'));
@@ -23,93 +54,58 @@ $request = Request::createFromGlobals();
 /**
  * custom Functions
  */
-function html($text){
+function html($text)
+{
     return htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
 }
 
-function htmlout($text){
+function htmlout($text)
+{
     echo html($text);
 }
 
-//sample data
-$items = array(
-    array('id' => '1', 'desc' => 'Learning PHP Design Patterns', 'price' => 15.81),
-    array('id' => '2', 'desc' => 'Effortless E-Commerce PHP and MySQL', 'price' => 23.09),
-    array('id' => '3', 'desc' => 'Secret of the JavaScript Ninja', 'price' => 22.31),
-    array('id' => '4', 'desc' => 'Simply JavaScript (SitePoint)',   'price' => 39.95));
-
-
-if (!isset($_SESSION['cart'])) {
+if (!$_SESSION['cart']) {
     $_SESSION['cart'] = array();
 }
 
-// add items to cart
-if (isset($_POST['action']) and $_POST['action'] == 'buy') {
+var_dump($_SESSION);
 
-    //add item id to $_SESSION['cart'] array
-    $_SESSION['cart'][] = $_POST['id'];
+// Add items to cart
+if ($request->request->has('action') and $request->request->get('action') == 'buy') {
 
-    //log it
-    $log->addInfo("data:\n".$_POST['id']);
+    $array_orders = $cart_oders->getIterator();
+    $order_count = $array_orders->count();
+
+    $cart_oders->set($order_count,$_POST['id']);
 
     header('Location:.');
     exit();
 }
 
-// clear item from cart
+// Clear cart
+if($request->request->has('action') and $request->request->get('action') == 'empty_cart'){
+    $cart_oders->clear();
+    header('Location:?cart');
+    exit();
+}
 
 
+// Detail cart
+if (isset($_GET['cart'])) {
+    $cart = array();
+    $total = 0;
+    foreach ($_SESSION['cart'] as $id) {
+        foreach ($items as $product) {
+            if ($product['id'] == $id) {
+                $cart[] = $product;
+                $total += $product['price'];
+                break;
+            }
+        }
+    }
+    include 'cart.php';
+    exit();
+}
+
+include 'catalog.php';
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Simple Shopping Cart</title>
-    <style>
-        table {
-            border-collapse: collapse;
-        }
-        td, th {
-            border: 1px solid black;
-        }
-    </style>
-</head>
-<body>
-<h1>Simple Shopping Cart/h1>
-
-<p>Your shopping cart contains <?php echo count($_SESSION['cart'])?> items</p>
-
-<p><a href="?cart">View your cart</a></p>
-<table border="1">
-    <thead>
-    <tr>
-        <th>Item Description</th>
-        <th>Price</th>
-    </tr>
-    </thead>
-    <tbbody>
-        <?php foreach($items as $item):?>
-        <tr>
-            <td>
-                <?php htmlout($item['desc']);?>
-            </td>
-            <td>
-                $<?php echo number_format($item['price'],2);?>
-            <td>
-            </td>
-            <td>
-            <form action="" method="post">
-                <div>
-                    <input name="id" type="hidden" value=<?php
-                        htmlout($item['id']);
-                        ?>
-                    />
-                    <input type="submit" value="buy" name="action"/>
-                </div>
-            </form>
-            </td>
-        </tr>
-        <?php endforeach; ?>
-    </tbbody>
-</table>
-</body>
-</html>
