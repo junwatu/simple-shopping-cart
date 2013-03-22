@@ -108,4 +108,3 @@ if (isset($_GET['cart'])) {
 }
 
 include 'catalog.php';
-?>

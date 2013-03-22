@@ -32,6 +32,7 @@
 <table border="1">
     <thead>
     <tr>
+        <th></th>
         <th>Item Description</th>
         <th>Price</th>
     </tr>
@@ -39,6 +40,7 @@
     <tbbody>
         <?php foreach($items as $item):?>
             <tr>
+                <td><img width="103" height="135" src="<?php htmlout($item['cover'])?>" alt=""/></td>
                 <td>
                     <?php htmlout($item['desc']);?>
                 </td>
