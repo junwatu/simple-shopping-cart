@@ -68,7 +68,7 @@ if (!$_SESSION['cart']) {
     $_SESSION['cart'] = array();
 }
 
-var_dump($_SESSION);
+//var_dump($_SESSION);
 
 // Add items to cart
 if ($request->request->has('action') and $request->request->get('action') == 'buy') {
