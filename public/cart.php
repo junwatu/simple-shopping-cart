@@ -45,9 +45,9 @@
             <?php foreach ($cart as $item): ?>
                 <tr>
 
-                    <td><img width="103" height="135" src="<?php htmlout($item['cover'])?>" alt=""/></td>
+                    <td><img width="103" height="135" src="<?php $help->htmlout($item['cover'])?>" alt=""/></td>
                     <td>
-                        <?php htmlout($item['desc']);?>
+                        <?php $help->htmlout($item['desc']);?>
                     </td>
                     <td>
                         $<?php echo number_format($item['price'], 2);?>

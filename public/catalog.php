@@ -40,9 +40,9 @@
     <tbbody>
         <?php foreach($items as $item):?>
             <tr>
-                <td><img width="103" height="135" src="<?php htmlout($item['cover'])?>" alt=""/></td>
+                <td><img width="103" height="135" src="<?php $help->htmlout($item['cover'])?>" alt=""/></td>
                 <td>
-                    <?php htmlout($item['desc']);?>
+                    <?php $help->htmlout($item['desc']);?>
                 </td>
                 <td>
                     $<?php echo number_format($item['price'],2);?>
@@ -52,7 +52,7 @@
                     <form action="" method="post">
                         <div>
                             <input name="id" type="hidden" value=<?php
-                            htmlout($item['id']);
+                            $help->htmlout($item['id']);
                             ?>
                                 />
                             <input type="submit" value="buy" name="action"/>
