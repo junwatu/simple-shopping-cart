@@ -8,61 +8,35 @@
  *  2013
  */
 
-require '../vendor/autoload.php';
+include_once 'register.php';
 include 'data.php';
 
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
-use Symfony\Component\ClassLoader\UniversalClassLoader;
 use Symfony\Component\HttpFoundation\Request;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
-$loader = new UniversalClassLoader();
-$loader->useIncludePath(true);
-
-/**
- * Register custom library
- */
-$loader->registerNamespaces(array(
-    'Watushop' => __DIR__ . '/../lib'
-));
-
-$loader->register();
-
 use Watushop\Version;
+use Watushop\Helper;
 
+$cart_oders = new AttributeBag('cart');
+$cart_oders->setName('Shopping Orders');
 
 /**
  * Start Session
  */
-$cart_oders = new AttributeBag('cart');
-$cart_oders->setName('Shopping Orders');
-
-
 $session = new Session(null,$cart_oders);
 $session->start();
 
 $info = new Version();
+$help = new Helper();
 
 $log = new Logger('Watushop');
 $log->pushHandler(new StreamHandler('../log/watushop.log'));
 
 $request = Request::createFromGlobals();
-
-/**
- * custom Functions
- */
-function html($text)
-{
-    return htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
-}
-
-function htmlout($text)
-{
-    echo html($text);
-}
 
 if (!$_SESSION['cart']) {
     $_SESSION['cart'] = array();
