@@ -38,11 +38,12 @@ $log->pushHandler(new StreamHandler('../log/watushop.log'));
 
 $request = Request::createFromGlobals();
 
+var_dump($_SESSION);
+
 if (!$_SESSION['cart']) {
     $_SESSION['cart'] = array();
 }
 
-//var_dump($_SESSION);
 
 // Add items to cart
 if ($request->request->has('action') and $request->request->get('action') == 'buy') {
@@ -50,7 +51,7 @@ if ($request->request->has('action') and $request->request->get('action') == 'bu
     $array_orders = $cart_orders->getIterator();
     $order_count = $array_orders->count();
 
-    $cart_orders->set($order_count,$request->query->get('id'));
+    $cart_orders->set($order_count,$request->request->get('id'));
 
     header('Location:.');
     exit();
