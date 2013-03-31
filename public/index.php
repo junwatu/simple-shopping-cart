@@ -21,13 +21,13 @@ use Monolog\Handler\StreamHandler;
 use Watushop\Version;
 use Watushop\Helper;
 
-$cart_oders = new AttributeBag('cart');
-$cart_oders->setName('Shopping Orders');
+$cart_orders = new AttributeBag('cart');
+$cart_orders->setName('Shopping Orders');
 
 /**
  * Start Session
  */
-$session = new Session(null,$cart_oders);
+$session = new Session(null,$cart_orders);
 $session->start();
 
 $info = new Version();
@@ -47,10 +47,10 @@ if (!$_SESSION['cart']) {
 // Add items to cart
 if ($request->request->has('action') and $request->request->get('action') == 'buy') {
 
-    $array_orders = $cart_oders->getIterator();
+    $array_orders = $cart_orders->getIterator();
     $order_count = $array_orders->count();
 
-    $cart_oders->set($order_count,$_POST['id']);
+    $cart_orders->set($order_count,$request->query->get('id'));
 
     header('Location:.');
     exit();
@@ -58,7 +58,7 @@ if ($request->request->has('action') and $request->request->get('action') == 'bu
 
 // Clear cart
 if($request->request->has('action') and $request->request->get('action') == 'empty_cart'){
-    $cart_oders->clear();
+    $cart_orders->clear();
     header('Location:?cart');
     exit();
 }
