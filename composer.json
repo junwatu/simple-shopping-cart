@@ -12,7 +12,6 @@
     ],
     "require":{
         "symfony/http-foundation":"2.2.x",
-        "symfony/class-loader":"2.2.x",
-        "monolog/monolog":"1.4.x"
+        "symfony/class-loader":"2.2.x"
     }
 }
