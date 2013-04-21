@@ -15,11 +15,8 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 use Symfony\Component\HttpFoundation\Request;
 
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
-
-use Watushop\Version;
-use Watushop\Helper;
+use SimpleStore\Version;
+use SimpleStore\Helper;
 
 $cart_orders = new AttributeBag('cart');
 $cart_orders->setName('Shopping Orders');
@@ -33,17 +30,11 @@ $session->start();
 $info = new Version();
 $help = new Helper();
 
-$log = new Logger('Watushop');
-$log->pushHandler(new StreamHandler('../log/watushop.log'));
-
 $request = Request::createFromGlobals();
-
-var_dump($_SESSION);
 
 if (!$_SESSION['cart']) {
     $_SESSION['cart'] = array();
 }
-
 
 // Add items to cart
 if ($request->request->has('action') and $request->request->get('action') == 'buy') {
@@ -64,7 +55,6 @@ if($request->request->has('action') and $request->request->get('action') == 'emp
     exit();
 }
 
-
 // Detail cart
 if (isset($_GET['cart'])) {
     $cart = array();
@@ -82,4 +72,4 @@ if (isset($_GET['cart'])) {
     exit();
 }
 
-include 'catalog.php';
+include 'store.php';
