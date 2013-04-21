@@ -4,4 +4,4 @@ build
 *.log
 *.iml
 vendor
-composer.lock
+.DS_Store
