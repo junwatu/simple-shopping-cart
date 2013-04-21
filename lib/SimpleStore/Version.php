@@ -5,7 +5,7 @@
  * Time: 3:53 PM
  */
 
-namespace Watushop;
+namespace SimpleStore;
 
 class Version {
 

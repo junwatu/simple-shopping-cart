@@ -5,7 +5,7 @@
  * Time: 6:34 AM
  */
 
-namespace Watushop;
+namespace SimpleStore;
 
 class Helper {
 
