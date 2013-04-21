@@ -15,8 +15,7 @@ $loader->useIncludePath(true);
  * Register custom library
  */
 $loader->registerNamespaces(array(
-    'Watushop' => __DIR__ . '/../lib'
+    'SimpleStore' => __DIR__ . '/../lib'
 ));
 
 $loader->register();
-
