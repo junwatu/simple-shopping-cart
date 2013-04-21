@@ -25,12 +25,9 @@
 <body>
 <div class="row">
     <div class="large-12 columns">
-
         <!-- Navigation -->
-
         <div class="row">
             <div class="large-12 columns">
-
                 <nav class="top-bar">
                     <ul class="title-area">
                         <!-- Title Area -->
@@ -41,7 +38,7 @@
                                 </a>
                             </h1>
                         </li>
-                        <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+
                     </ul>
 
                     <section class="top-bar-section">
@@ -61,7 +58,6 @@
         </div>
 
         <!-- End Navigation -->
-
         <div class="row">
 
             <!-- Thumbnails -->
@@ -100,7 +96,6 @@
 
 
         <!-- Footer -->
-
         <footer class="row">
             <div class="large-12 columns">
                 <hr/>
@@ -119,7 +114,6 @@
                 </div>
             </div>
         </footer>
-
         <!-- End Footer -->
 
     </div>
@@ -134,7 +128,6 @@
 <script>
     $(document).foundation();
 </script>
-<!-- End Footer -->
 
 </body>
 </html>
