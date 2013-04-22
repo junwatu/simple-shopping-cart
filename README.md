@@ -1,7 +1,7 @@
-Simple Chart
+Simple Cart
 ============
 
-Simple Shopping chart example from scratch. UI using foundation css framework.
+Simple Shopping cart example from scratch. UI using foundation css framework.
 
 
 Demo
