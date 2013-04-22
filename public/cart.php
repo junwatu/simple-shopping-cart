@@ -136,7 +136,7 @@
 
                     <div class="large-6 columns">
                         <ul class="inline-list right">
-                            <li><a href="https://github.com/junwatu/simple-shopping-chart">Fork Me on Github</a></li>
+                            <li><a href="https://github.com/junwatu/simple-shopping-cart">Fork Me on Github</a></li>
                         </ul>
                     </div>
 
