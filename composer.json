@@ -1,6 +1,6 @@
 {
-    "name": "junwatu/simple-shopping-chart",
-    "description": "Shopping chart from scratch",
+    "name": "junwatu/simple-shopping-cart",
+    "description": "Shopping cart from scratch",
     "minimum-stability": "dev",
     "authors": [
         {
