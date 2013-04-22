@@ -9,7 +9,7 @@ namespace SimpleStore;
 
 class Version {
 
-    static $APP_VERSION = "1.0-alpha";
+    static $APP_VERSION = "1.0-beta";
 
     public function __construct(){
 

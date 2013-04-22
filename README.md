@@ -1,4 +1,4 @@
-Simple Shopping Chart
-=====================
+Simple Chart
+============
 
-Shopping chart from scratch.
+Simple Shopping chart from scratch
