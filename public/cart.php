@@ -131,12 +131,12 @@
                 <div class="row">
 
                     <div class="large-6 columns">
-                        <p>&copy; Copyright JunWatu.Com</p>
+                        <p>&copy; Copyright <a href="http://www.junwatu.com">JunWatu.Com</a></p>
                     </div>
 
                     <div class="large-6 columns">
                         <ul class="inline-list right">
-                            <li><a href="#">Fork Me on Github</a></li>
+                            <li><a href="https://github.com/junwatu/simple-shopping-chart">Fork Me on Github</a></li>
                         </ul>
                     </div>
 
