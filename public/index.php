@@ -18,6 +18,9 @@ use Symfony\Component\HttpFoundation\Request;
 use SimpleStore\Version;
 use SimpleStore\Helper;
 
+$info = new Version();
+$help = new Helper();
+
 $cart_orders = new AttributeBag('cart');
 $cart_orders->setName('Shopping Orders');
 
@@ -27,14 +30,7 @@ $cart_orders->setName('Shopping Orders');
 $session = new Session(null,$cart_orders);
 $session->start();
 
-$info = new Version();
-$help = new Helper();
-
 $request = Request::createFromGlobals();
-
-if (!$_SESSION['cart']) {
-    $_SESSION['cart'] = array();
-}
 
 // Add items to cart
 if ($request->request->has('action') and $request->request->get('action') == 'buy') {
@@ -56,10 +52,13 @@ if($request->request->has('action') and $request->request->get('action') == 'emp
 }
 
 // Detail cart
-if (isset($_GET['cart'])) {
+if ($request->query->has('cart')) {
     $cart = array();
     $total = 0;
-    foreach ($_SESSION['cart'] as $id) {
+
+    //var_dump($cart_orders->all());
+
+    foreach ($cart_orders->all() as $id) {
         foreach ($items as $product) {
             if ($product['id'] == $id) {
                 $cart[] = $product;
