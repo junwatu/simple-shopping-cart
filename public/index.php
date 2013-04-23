@@ -32,6 +32,13 @@ $session->start();
 
 $request = Request::createFromGlobals();
 
+/**
+if (!$_SESSION['cart']) {
+    $_SESSION['cart'] = array();
+}
+ *
+ */
+
 // Add items to cart
 if ($request->request->has('action') and $request->request->get('action') == 'buy') {
 
